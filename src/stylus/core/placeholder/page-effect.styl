@@ -1,0 +1,23 @@
+//
+// Page effect component
+//
+// .c-page-effect {
+//   @extend $_page-effect;
+// }
+//
+// <div class="c-page-effect" data-c="page-effect" data-page-effect="fade">
+//   <div class="c-page-effect__item">
+//     Loading...
+//   </div>
+// </div>
+//
+
+$_page-effect {
+  _page-effect();
+  background-color: #fff;
+
+  &__item {
+    _position(absolute, 50%, null, null, 50%);
+    transform: translate(-50%, -50%);
+  }
+}

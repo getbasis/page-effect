@@ -1,0 +1,52 @@
+//
+// Page effect component
+//
+// .c-page-effect {
+//   _page-effect();
+// }
+//
+// <div data-c="page-effect" data-page-effect="fade"></div>
+//
+
+_page-effect-duration ?= .2s; // Must be the same as js location duration time.
+_page-effect-z-index  ?= 1000000;
+
+_page-effect() {
+  &[data-c="page-effect"] {
+    _position(fixed, 0, 0, 0, 0, _page-effect-z-index);
+
+    &[data-page-effect="fade"] {
+      &[aria-hidden="true"] {
+        opacity: 0;
+        z-index: -1;
+        animation: _page-effect-fadeout (_page-effect-duration * 2) ease-in 0s;
+      }
+
+      &[aria-hidden="false"] {
+        opacity: 1;
+        z-index: _page-effect-z-index;
+        animation: _page-effect-fadein _page-effect-duration ease-in 0s;
+      }
+    }
+
+    @keyframes _page-effect-fadeout {
+      0% {
+        z-index: _page-effect-z-index;
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes _page-effect-fadein {
+      0% {
+        z-index: _page-effect-z-index;
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
